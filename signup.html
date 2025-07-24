@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schoolmangmentsystem\signup.page</title>
+</head>
+<style>
+  body {
+  margin: 0;
+  padding: 0;
+  font-family: 'poppins', sans-serif;
+  background:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+ 
+.signup-container {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  width: 350px;
+  box-shadow: 0 4px 20px rgba(114,112,112,0.1);
+}
+ 
+.signup-form h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+ 
+.signup-form input[type="email"],
+.signup-form input[type="password"] {
+  width: 92%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+ 
+.password-confirm-wrapper {
+  position: relative;
+}
+ 
+.password-confirm-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+ 
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+}
+ 
+.signup-btn {
+  width: 100%;
+  padding: 12px;
+  background-color:#df8730;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 15px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+ 
+.signup-btn:hover {
+  /* background-color:; */
+}
+ 
+.login-link {
+  text-align: center;
+  font-size: 13px;
+  margin: 10px 0;
+}
+ 
+.login-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+ 
+.separator {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+ 
+.separator hr {
+  flex: 1;
+  border: none;
+  height: 1px;
+  background: #ccc;
+}
+ 
+.separator span {
+  padding: 0 10px;
+  font-size: 12px;
+  color: #999;
+}
+ 
+.social-btn {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  cursor: pointer;
+}
+ 
+.social-btn img {
+  width: 18px;
+  height: 18px;
+}
+ 
+.fb-btn {
+    text-align: center;
+  background-color: #3b5998;
+  color: white;
+}
+ 
+.google-btn {
+    text-align: center;
+  background-color: #f2f2f2;
+  color: black;
+}
+ 
+</style>
+<body>
+  <div class="signup-container">
+    <form class="signup-form">
+      <h2>Signup</h2>
+ 
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Create password" required>
+     
+      <div class="password-confirm-wrapper">
+        <input type="password" placeholder="Confirm password" required>
+        <span class="toggle-password">👁️</span>
+      </div>
+ 
+      <button type="submit" class="signup-btn">Signup</button>
+ 
+      <p class="login-link">Already have an account? <a href="login.html">Login</a></p>
+ 
+      <div class="separator">
+        <hr><span>Or</span><hr>
+      </div>
+ 
+      <button class="social-btn fb-btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+        Login with Facebook
+      </button>
+ 
+      <button class="social-btn google-btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png" alt="Google" />
+        Login with Google
+      </button>
+    </form>
+  </div>
+</body>
+</html>

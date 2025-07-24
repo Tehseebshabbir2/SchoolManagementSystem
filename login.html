@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schoolmangmentsystem.loginpage</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .login-container {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(114, 112, 112, 0.1);
+        padding: 40px;
+        width: 350px;
+    }
+
+    .login-form h2 {
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+        width: 92%;
+        padding: 10px 12px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    .password-wrapper {
+        position: relative;
+    }
+
+    .toggle-password {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 14px;
+        user-select: none;
+    }
+
+    .forgot-password {
+        display: block;
+        text-align: center;
+        font-size: 13px;
+        margin-bottom: 20px;
+        text-decoration: none;
+        color: #3169e4;
+    }
+
+    .login-btn {
+        width: 100%;
+        background: #df8730;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        cursor: pointer;
+        margin-bottom: 15px;
+    }
+
+    .signup-text {
+        text-align: center;
+        font-size: 13px;
+        color: #666;
+    }
+
+    .signup-text a {
+        color: #3169e4;
+        text-decoration: none;
+    }
+ .separator {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+ 
+.separator hr {
+  flex: 1;
+  border: none;
+  height: 1px;
+  background: #ccc;
+}
+ 
+.separator span {
+  padding: 0 10px;
+  font-size: 12px;
+  color: #999;
+}
+ 
+
+
+    .social-btn {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .social-btn img {
+        width: 18px;
+        height: 18px;
+    }
+
+
+    .facebook {
+        text-align: center;
+        background-color: #3b5998;
+        color: white;
+    }
+
+    .google {
+        text-align: center;
+        background-color: #f1f1f1;
+        color: #444;
+    }
+</style>
+
+<body>
+    <div class="login-container">
+        <form class="login-form">
+            <h2>Login</h2>
+
+            <input type="email" placeholder="Email" required />
+            <div class="password-wrapper">
+                <input type="password" placeholder="Password" required />
+                <span class="toggle-password">👁️</span>
+            </div>
+
+            <a href="#" class="forgot-password">Forgot password?</a>
+
+            <button type="submit" class="login-btn">Login</button>
+            <p class="signup-text">Don't have an account? <a href="signup.html">Signup</a></p>
+
+           <div class="separator">
+        <hr><span>Or</span><hr>
+      </div>
+
+            <button class="social-btn facebook"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" />
+                Login with Facebook</button>
+            <button class="social-btn google"><img src="https://cdn-icons-png.flaticon.com/512/281/281764.png" /> Login
+                with
+                Google</button>
+        </form>
+    </div>
+</body>
+
+</html>

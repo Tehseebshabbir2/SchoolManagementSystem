@@ -11,30 +11,62 @@
         <div class="half-header">
 <div class="logo">
     <img src="icon.png" alt="">
-    <h1>School Management System</h1>
+     <h1>School Managment System</h1>
 </div>
 </div>
 <div class="half-header2">
   <div class="buttons">
- <a href="signup.html" class="login-btn">signup</a>
-  <a href="login.html" class="login-btn">Login</a>
+  <a href="login.html" class="logout-btn">Login</a>
+  <a href="add.html" class="create-btn">Create</a>
   </div>
  </div>
     </header>
     <div class="sidebar">
+      <div class="sidebar1">
   <nav>
     <ul>
+<<<<<<< Updated upstream
       <li><a href="user.html">Users</a></li>
       <li><a href="class.html">Classes</a></li>
+=======
+        <li><a href="">Dashboard</a></li>
+      <li>
+        <a href="#" onclick="toggleUserDropdown(event)">Users</a>
+        <div class="user-dropdown" id="userDropdown">
+          <div>Principal</div>
+          <div>Teacher</div>
+          <div>Security Staff</div>
+          <div>Students</div>
+        </div>
+      <li><a href="#">Classes</a></li>
+>>>>>>> Stashed changes
       <li><a href="#">Subjects</a></li>
       <li><a href="#">Students</a></li>
       <li><a href="#">Admission</a></li>
       <li><a href="#">Quizzes</a></li>
     </ul>
   </nav>
+  </div>
+  <div class="sidebar2">
+  <div class="dashboard-container">
+      <h1>Dashboard</h1>
+      <div class="dashboard">
+        <div class="card">
+          <h2>Total Students</h2>
+          <p>320</p>
+        </div>
+        <div class="card">
+          <h2>Total Teachers</h2>
+          <p>25</p>
+        </div>
+        <div class="card">
+          <h2>Total Principals</h2>
+          <p>1</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-
 <script src="script.js"></script>
 </body>
 </html>

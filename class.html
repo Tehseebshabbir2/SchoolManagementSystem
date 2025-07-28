@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Classes | School Management System</title>
+  <link rel="stylesheet" href="style.css" />
+ 
+</head>
+<body>
+<header class="header">
+        <div class="half-header">
+<div class="logo">
+    <img src="icon.png" alt="">
+    <h1>School Management System</h1>
+</div>
+</div>
+<div class="half-header2">
+  <!-- <div class="buttons">
+ <a href="signup.html" class="login-btn">signup</a>
+  <a href="login.html" class="login-btn">Login</a>
+  </div> -->
+   <button class="add-btn" onclick="openModal()">+ Add Class</button>
+ </div>
+    </header>
+    <div class="main-classes">
+
+    <div class="sidebar">
+  <nav>
+    <ul>
+      <li><a href="user.html">Users</a></li>
+      <li><a href="#">Classes</a></li>
+      <li><a href="#">Subjects</a></li>
+      <li><a href="#">Students</a></li>
+      <li><a href="#">Admission</a></li>
+      <li><a href="#">Quizzes</a></li>
+    </ul>
+  </nav>
+</div>
+ 
+
+  <div class="container">
+   
+
+    <table>
+      <thead>
+        <tr>
+          <th>Class Name</th>
+          <th>Section</th>
+          <th>Teacher</th>
+          <th>Total Students</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="classTable">
+      </tbody>
+    </table>
+  </div>
+</div>
+ 
+  <div id="classModal" class="modal">
+    <div class="modal-content">
+      <h3>Add New Class</h3>
+      <input type="text" id="className" placeholder="Class Name" />
+      <input type="text" id="section" placeholder="Section (e.g. A)" />
+      <input type="text" id="teacher" placeholder="Class Teacher Name" />
+      <input type="number" id="students" placeholder="Total Students" />
+      <button onclick="addClass()">Add Class</button>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById("classModal").style.display = "block";
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById("classModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+
+    function addClass() {
+      const name = document.getElementById("className").value;
+      const section = document.getElementById("section").value;
+      const teacher = document.getElementById("teacher").value;
+      const students = document.getElementById("students").value;
+
+      const table = document.getElementById("classTable");
+      const row = table.insertRow();
+
+      row.innerHTML = `
+        <td>${name}</td>
+        <td>${section}</td>
+        <td>${teacher}</td>
+        <td>${students}</td>
+        <td class="actions">
+          <button>Edit</button> |
+          <button>Delete</button>
+        </td>
+      `;
+
+     
+      document.getElementById("classModal").style.display = "none";
+      document.getElementById("className").value = '';
+      document.getElementById("section").value = '';
+      document.getElementById("teacher").value = '';
+      document.getElementById("students").value = '';
+    }
+  </script>
+
+</body>
+</html>

@@ -16,7 +16,7 @@
 </div>
 </div>
 <div class="half-header2">
-   <button class="add-btn" onclick="openModal()">+ Add Class</button>
+   <button class="add-btn" onclick="openModal()">+ Add Student</button>
  </div>
     </header>
     <div class="main-classes">
@@ -25,9 +25,9 @@
     <ul>
       <li><a href="index.html">Dashbord</a></li>
       <li><a href="user.html">Users</a></li>
-      <li><a href="#">Classes</a></li>
+      <li><a href="class.html">Classes</a></li>
       <li><a href="subject.html">Subjects</a></li>
-      <li><a href="student.html">Students</a></li>
+      <li><a href="">Students</a></li>
       <li><a href="admission.html">Admission</a></li>
      
     </ul>
@@ -41,11 +41,11 @@
     <table>
       <thead>
         <tr>
-          <th>Class Name</th>
-          <th>Section</th>
-          <th>Teacher</th>
-          <th>Total Students</th>
-          <th>Room #</th>
+          <th>Student Id</th>
+          <th>Student Name</th>
+          <th>Class</th>
+          <th>phone #</th>
+          <th>Address</th>
         </tr>
       </thead>
       <tbody id="classTable">
@@ -56,11 +56,11 @@
   <div id="classModal" class="modal">
     <div class="modal-content">
       <h3>Add New Class</h3>
-      <input type="text" id="className" placeholder="Class Name" />
-      <input type="text" id="section" placeholder="Section (e.g. A)" />
+      <input type="text" id="className" placeholder="student Id" />
+      <input type="text" id="section" placeholder="Student name" />
       <input type="text" id="teacher" placeholder="Class Teacher Name" />
-      <input type="number" id="students" placeholder="Total Students" />
-      <input type="text" id="Room" placeholder="Room" />
+      <input type="number" id="students" placeholder="phone #" />
+      <input type="text" id="Room" placeholder="Adress" />
       <button onclick="addClass()">Add Class</button>
     </div>
   </div>

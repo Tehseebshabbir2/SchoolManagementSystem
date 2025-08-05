@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>School Management System</title>
+   <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="media qeure.css">
+</head>
+<body>
+     <header class="header">
+        <div class="half-header">
+<div class="logo">
+    <img src="icon.png" alt="">
+     <h1>School Managment System</h1>
+</div>
+</div>
+<div class="half-header2">
+  <div class="buttons">
+  <a href="login.html" class="logout-btn">Login</a>
+  </div>
+ </div>
+    </header>
+    <div class="main-admision">
+    <div class="sidebar" style="height: auto;">
+      <div class="sidebar1">
+  <nav>
+    <ul>
+        <li><a href="index.html">Dashbord</a></li>
+      <li><a href="user.html">Users</a></li>
+      <li><a href="class.html">Classes</a></li>
+      <li><a href="subject.html">Subjects</a></li>
+      <li><a href="student.html">Students</a></li>
+      <li><a href="admission.html">Admission</a></li>
+    </ul>
+  </nav>
+  </div>
+</div>
+    <div class="form-container">
+        <h2>Student Admission Form</h2>
+        <form id="admissionForm">
+            <label for="studentName">Full Name:</label>
+            <input type="text" id="studentName" required />
+            <label for="email">Email:</label>
+            <input type="email" id="email" required />
+            <label for="gender">Gender:</label>
+            <select id="gender" required>
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" required />
+            <label for="class">Class Applying For :</label>
+            <select id="class" required>
+                <option value="">Select Class</option>
+                <option value="Nursery">Nursery</option>
+                <option value="KG">KG</option>
+                <option value="1">Class 1</option>
+                <option value="2">Class 2</option>
+                <option value="3">Class 3</option>
+                <option value="4">Class 4</option>
+                <option value="5">Class 5</option>
+                <option value="6">Class 6</option>
+                <option value="7">Class 7</option>
+                <option value="8">Class 8</option>
+                <option value="9">Class 9</option>
+                <option value="10">Class 10</option>           
+            </select>
+            <label for="parentContact">Parent Contact No:</label>
+            <input type="tel" id="parentContact" required pattern="[0-9]{11}" placeholder="03XXXXXXXXX" />
+            <label for="address">Address:</label>
+            <textarea id="address" rows="2" required></textarea>
+<div class="btns">
+            <button type="submit">Submit Admission</button>
+            </div>
+            <p class="success-message" id="messageBox"></p>
+        </form>
+    </div>
+    </div>
+    <script>
+  document.getElementById("admissionForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const name = document.getElementById("studentName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const gender = document.getElementById("gender").value;
+    const dob = document.getElementById("dob").value;
+    const className = document.getElementById("class").value;
+    const contact = document.getElementById("parentContact").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const admission = {
+      name,
+      email,
+      gender,
+      dob,
+      className,
+      contact,
+      address,
+    };
+    let admissions = JSON.parse(localStorage.getItem("admissions")) || [];
+    admissions.push(admission);
+    localStorage.setItem("admissions", JSON.stringify(admissions));
+  });
+</script>
+</body>
+</html>

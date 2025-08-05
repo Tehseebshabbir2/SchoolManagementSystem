@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>School Management System</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" >
+  <link rel="stylesheet" href="media qeure.css">
 </head>
 <body>
-
-  
   <header class="header">
     <div class="half-header">
       <div class="logo">
@@ -17,49 +16,38 @@
       </div>
     </div>
     <div class="half-header2">
-      <!-- <div class="buttons">
-        <a href="signup.html" class="login-btn">Signup</a>
-        <a href="login.html" class="login-btn">Login</a>
-      </div> -->
+      <a href="add.html" class="create-btn">Create</a>
       <div class="action-button-container">
   <div class="dropdown-wrapper">
     <span class="dropdown-icon" onclick="toggleDropdown()">☰</span> 
     <div class="dropdown-menu" id="dropdownMenu">
        <div>Principal</div>
           <div>Teacher</div>
+           <div>Studend</div>
           <div>Security Staff</div>
     </div>
   </div>
 </div>
     </div>
   </header>
-
-  
   <div class="main-container">
-    
-    
     <div class="sidebar">
       <nav>
         <ul>
+          <li><a href="index.html">Dashbord</a></li>
           <li><a href="#">Users</a></li>
           <li><a href="class.html">Classes</a></li>
-          <li><a href="#">Subjects</a></li>
-          <li><a href="#">Students</a></li>
-          <li><a href="#">Admission</a></li>
-          <li><a href="#">Quizzes</a></li>
+          <li><a href="subject.html">Subjects</a></li>
+          <li><a href="student.html">Students</a></li>
+          <li><a href="admission.html">Admission</a></li>
+          
         </ul>
       </nav>
     </div>
-
-   
     <div class="content-area">
-      
-      
-     
-
-
-
-     
+       <div class="search-container">
+  <input type="text" id="searchInput" placeholder="Search User Id......" onkeyup="searchClass()" />
+       </div>
       <table>
         <thead>
           <tr>
@@ -73,24 +61,32 @@
           </tr>
         </thead>
         <tbody id="userTableBody">
-          
         </tbody>
       </table>
     </div>
   </div>
-
-
-
-
-
-
-<script>
+  <script>
+  function searchClass() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const rows = document.querySelectorAll("#userTableBody tr");
+    let found = false;
+    rows.forEach(row => {
+      const userId = row.cells[0].textContent.toLowerCase();
+      if (userId.includes(input)) {
+        row.style.display = "";
+        found = true;
+      } else {
+        row.style.display = "none";
+      }
+    });
+    if (!found && input.trim() !== "") {
+      alert("User ID not found!");
+    }
+  }
   function toggleDropdown() {
     const menu = document.getElementById('dropdownMenu');
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
   }
-
- 
   document.addEventListener('click', function (e) {
     const menu = document.getElementById('dropdownMenu');
     const icon = document.querySelector('.dropdown-icon');
@@ -98,6 +94,22 @@
       menu.style.display = 'none';
     }
   });
+  window.onload = function () {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const tbody = document.getElementById("userTableBody");
+    users.forEach((user, index) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${user.firstName}</td>
+        <td>${user.lastName}</td>
+        <td>${user.email}</td>
+        <td>${user.role}</td>
+        <td>${user.contact}</td>
+        <td>${user.address}</td>`;
+      tbody.appendChild(row);
+    });
+  };
 </script>
 </body>
 </html>

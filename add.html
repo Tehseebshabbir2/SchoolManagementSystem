@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +15,6 @@
     height: 100vh;
     margin: 0;
   }
-
   #userForm {
     background-color: #ffffff;
     padding: 30px 25px;
@@ -27,8 +25,6 @@
     flex-direction: column;
     gap: 15px;
   }
-
-
   #userForm input,
   #userForm select,#address {
     padding: 10px 14px;
@@ -37,13 +33,11 @@
     font-size: 14px;
     transition: border-color 0.3s;
   }
-
   #userForm input:focus,
   #userForm select:focus {
     border-color: #df8730;
     outline: none;
   }
-
   #userForm button {
     background: #df8730;
     color: #ffffff;
@@ -54,12 +48,10 @@
     font-size: 15px;
     transition: background-color 0.3s;
   }
-
   #userForm button:hover {
     background-color: #df8730;
   }
 </style>
-
 <body>
   <form id="userForm">
     <input type="text" id="name" placeholder="First Name" required />
@@ -67,15 +59,37 @@
     <input type="email" id="email" placeholder="Enter Email" required />
     <select id="role" required>
       <option value="">Select Role</option>
-      <option value="Admin">Student</option>
+      <option value="Student">Student</option>
       <option value="Teacher">Teacher</option>
-      <option value="Student">Security Staff</option>
-      <option value="Student">Principal</option>
+      <option value="Security Staff">Security Staff</option>
+      <option value="Principal">Principal</option>
     </select>
     <input type="tel" id="contact" placeholder="Enter Contact Number" required />
     <textarea id="address" placeholder="Enter Address" required></textarea>
     <button type="submit">Add User</button>
   </form>
+  <script>
+  document.getElementById("userForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const firstName = document.getElementsByTagName("input")[0].value;
+    const lastName = document.getElementsByTagName("input")[1].value;
+    const email = document.getElementById("email").value;
+    const role = document.getElementById("role").value;
+    const contact = document.getElementById("contact").value;
+    const address = document.getElementById("address").value;
+    const user = {
+      firstName,
+      lastName,
+      email,
+      role,
+      contact,
+      address,
+    };
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    users.push(user);
+    localStorage.setItem("users", JSON.stringify(users));
+    window.location.href = "user.html";
+  });
+</script>
 </body>
-
 </html>

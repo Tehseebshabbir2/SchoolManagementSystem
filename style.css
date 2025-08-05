@@ -4,55 +4,41 @@
   box-sizing: border-box;
   font-family: 'poppins', sans-serif;
 }
-
 .header {
   width: 100%;
   height: auto;
-  background-color: #2c3e50;
+  background-color: #23303d;
   display: flex;
 }
-
 .half-header {
   width: 50%;
 }
-
 .half-header2 {
   width: 50%;
   margin: auto;
   margin-right: 30px;
   justify-content: end;
   display: flex;
-  
-
 }
-
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-left: 40px;
 }
-
 .logo img {
   width: 70px;
   height: 70px;
   object-fit: contain;
 }
-
 .logo h1 {
   font-size: 20px;
   color: #df8730;
 }
 .buttons{
-<<<<<<< Updated upstream
   display: inline;
   gap: 4px;
-=======
-  display: flex;
-  gap: 13px;
->>>>>>> Stashed changes
 }
-
 .logout-btn,.create-btn {
   padding: 8px 16px;
   background-color: #df8730;
@@ -65,47 +51,29 @@
   float: right;
   text-decoration: none;
 }
-
 .logout-btn:hover,.create-btn:hover{
   background-color: white;
   color: #df8730;
 }
-
 /* sidebar */
-<<<<<<< Updated upstream
 .sidebar {
-=======
-.sidebar{
-  width: 100%;
-  height: 87.5vh;
-  display: flex;
-}
-.sidebar1 {
->>>>>>> Stashed changes
   width: 17%;
   height: 87.5vh;
   background-color: #2c3e50;
   color: white;
-  top: 29;
-  left: 0;
-  padding: 20px;
 }
-
 .sidebar h2 {
   font-size: 24px;
   margin-bottom: 30px;
   text-align: center;
 }
-
 .sidebar ul {
   list-style: none;
   padding: 0;
 }
-
 .sidebar ul li {
   margin-bottom: 20px;
 }
-
 .sidebar ul li {
   text-decoration: none;
   color: #df8730;
@@ -113,58 +81,29 @@
   align-items: center;
   font-size: 16px;
   transition: 0.3s;
-
 }
-
 .sidebar a {
   color: #df8730;
   text-decoration: none;
-  padding: 10px 4px;
+  padding: 15px;
   display: block;
 }
-
 .sidebar ul li a span {
   margin-right: 10px;
   font-size: 18px;
 }
-
 .sidebar ul li a:hover {
   color: white;
   background-color: #1e2a37;
 }
-
 .content-area {
   width: 83%;
-  padding: 20px 40px;
+  padding: 30px;
 }
-
-
-/* .action-button-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 20px;
-} */
-
-.action-btn {
-  background-color: #df8730;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 25px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.action-btn:hover {
-  background-color: #c76b1a;
-}
-
 .main-container{
   width: 100%;
   display: flex;
 }
-
   table {
       width: 95%;
       border-collapse: collapse;
@@ -172,40 +111,30 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       border-radius: 10px;
       overflow: hidden;
-    /* margin: auto;
-    margin-top: 50px;
-    margin-bottom: 0px; */
-    }
-
+  }
     th, td {
       padding: 12px;
       text-align: left;
       border-bottom: 1px solid #eee;
     }
-
     thead {
       background-color: #34495e;
       color: #df8730;
     }
-
     tbody tr:hover {
       background-color: #f1f1f1;
     }
-
 .dropdown-wrapper {
   position: relative;
 }
-
 .dropdown-icon {
   font-size: 29px;
-  
   color: #df8730;;
   padding: 10px 15px;
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .dropdown-menu {
   position: absolute;
   top: 120%;
@@ -218,33 +147,42 @@
   z-index: 999;
   min-width: 160px;
 }
-
 .dropdown-menu div {
   padding: 10px 15px;
   color: #df8730;
   cursor: pointer;
   transition: background-color 0.2s;
 }
-
 .dropdown-menu div:hover {
   background-color: #1e2a37;
   color: white;
 }
-<<<<<<< Updated upstream
-
-
 .action-button-container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
-
-/* classer */
+.search-container {
+  margin-bottom: 20px;
+  text-align: right;
+}
+#searchInput {
+  padding: 8px 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 250px;
+  transition: 0.3s ease;
+}
+#searchInput:focus {
+  outline: none;
+  border-color: #df8730;
+  box-shadow: 0 0 5px rgba(114,112,112,0.1);
+}
  .container {
   width: 83%;
       padding: 30px;
     }
-
     .add-btn {
       background-color: #df8730;
       color: white;
@@ -254,13 +192,10 @@
       font-size: 16px;
       cursor: pointer;
       float: right;
-      
     }
-
     .add-btn:hover {
       background-color: #c76b1a;
     }
-
     table {
       width: 100%;
       border-collapse: collapse;
@@ -269,19 +204,15 @@
       border-radius: 8px;
       overflow: hidden;
     }
-
     th, td {
       padding: 12px 15px;
       border-bottom: 1px solid #ddd;
       text-align: left;
     }
-
     thead {
       background-color: #34495e;
       color: #df8730;
     }
-
-   
     .modal {
       display: none;
       position: fixed;
@@ -293,7 +224,6 @@
       overflow: auto;
       background-color: rgba(0,0,0,0.5);
     }
-
     .modal-content {
       background-color: #fff;
       margin: 10% auto;
@@ -302,12 +232,10 @@
       width: 400px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
-
     .modal-content h3 {
       margin-bottom: 15px;
       color: #34495e;
     }
-
     .modal-content input, .modal-content select {
       width: 100%;
       padding: 10px;
@@ -315,7 +243,6 @@
       border: 1px solid #ccc;
       border-radius: 6px;
     }
-
     .modal-content button {
       padding: 10px 15px;
       background-color: #df8730;
@@ -324,11 +251,9 @@
       border-radius: 6px;
       cursor: pointer;
     }
-
     .modal-content button:hover {
       background-color: #c76b1a;
     }
-
     .actions button {
       background: none;
       border: none;
@@ -336,55 +261,252 @@
       cursor: pointer;
       font-weight: bold;
     }
-
     .actions button:hover {
       color: #c76b1a;
     }
     .main-classes{
       width: 100%;
       display: flex;
-=======
-.sidebar2{
+    }
+   .chart{
+    margin-left: 12px;
+   }
+   /* admission */
+   .main-admision{
+     width: 100%;
+      display: flex;
+   }
+   .form-container {
+            background: #ffffff;
+            padding: 25px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(114, 112, 112, 0.1);
+            width: 83%;
+            
+            transition: 0.3s ease;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #df8730;
+            font-size: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 200;
+            color: black;
+        }
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: red;
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+       .btns button {
+            width: 100%;
+            background-color: #df8730;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #c66f24;
+        }
+ /* Dassbord */
+.main-page{
+  width: 100%;
+  display: flex;
+}
+.main-dashboard{
   width: 83%;
   height: 87.5vh;
-background-color:white;
 }
-
-    .dashboard-container {
-      width: 83%;
-      height: 87.5vh;
+.dashboard-container {
+  padding: 20px;
+}
+.dashboard-container h1 {
+  color: #df8730;
+}
+.dashboard {
+  display: flex;
+  gap: 25px;
+  margin-top: 20px;
+}
+.card { 
+  background: white;
+  border-left: 9px solid #df8730;
+  border-radius: 10px;
+  box-shadow: 0 12px 20px rgba(114, 112, 112, 0.1);
+  padding: 30px;
+  width: 450px;
+  text-align: center;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: slideIn 0.8s ease-out forwards;
+      opacity: 0;
+}
+.card:nth-child(1) { animation-delay: 0.2s; }
+    .card:nth-child(2) { animation-delay: 0.4s; }
+    .card:nth-child(3) { animation-delay: 0.6s; }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(114,112,112,0.1);
+    }
+.card h2 {
+  font-size: 15px;
+  margin: 0 0 10px;
+  color: #df8730;
+}
+.card p {
+  font-size: 24px;
+  color: rgb(15, 15, 15);
+   font-weight: bold;
+} 
+   @keyframes slideIn {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }  
+     h2 {
+      margin-bottom: 10px;
+    }
+      .main-chart {
+      width: 40%;
+      margin-left: 12px;
+      border:rgb(114, 112, 112, 0.1);
       padding: 20px;
-      margin-left: 50px;
+      background:white;
+      float: right ;
+      margin-right: 120px;
     }
-    .dashboard-container h1{
-        color:#df8730;
-    }
-
-    .dashboard {
+     .bar-chart {
       display: flex;
-      gap: 25px;
+      justify-content: space-between;
+      align-items: flex-end;
+      height: auto;
+      padding: 20px 10px;
+      position: relative;
+      border-left: 2px solid #999;
+      border-bottom: 2px solid #999;
+    }
+    .bar-group {
+      text-align: center;
+      width: 100px;
+    }
+    .bar {
+      width: 20px;
+      margin: 0 3px;
+      display: inline-block;
+      vertical-align: bottom;
+      border-radius: 4px 4px 0 0;
+      animation: growBar 1s ease-out forwards;
+      transform: scaleY(0);
+      transform-origin: bottom;
+    }
+    .employee {
+      background-color: #df8730; 
+    }
+    .student {
+      background-color:  #2c3e50; 
+    }
+    .bar-label {
+      margin-top: 5px;
+      font-weight: bold;
+    }
+    .day-label {
+      margin-top: 10px;
+      font-size: 8.5px;
+    }
+    @keyframes growBar {
+      to {
+        transform: scaleY(1);
+      }
+    }
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
       margin-top: 20px;
     }
-
-    .card {
-      background: #df8730;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(114, 112, 112, 0.1);
-      padding: 30px;
-      width: 300px;
-      height: 150px;
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: bold;
+    }
+    .legend .employee-box {
+      width: 15px;
+      height: 15px;
+      background-color: #df8730;
+    }
+    .legend .student-box {
+      width: 15px;
+      height: 15px;
+      background-color:  #2c3e50;
+    }
+     h1 {
+      text-align: center;
+      color: #333;
+    }
+    .form-container, .table-container {
+      background: #fff;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 1000px;
+    }
+    input, select {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+    }
+    button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 10px;
       text-align: center;
     }
-
-    .card h2 {
-     margin-top: 6px;
-      font-size: 24px;
-      color: black;
-    }
-
-    .card p {
-      font-size: 40px;
-      color: white;
-      margin-top: 2px;
->>>>>>> Stashed changes
+    .actions button {
+      margin: 0 5px;
     }

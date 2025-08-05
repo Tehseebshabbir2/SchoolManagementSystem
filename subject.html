@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Classes | School Management System</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="media qeure.css">
+</head>
+<body>
+<header class="header">
+        <div class="half-header">
+<div class="logo">
+    <img src="icon.png" alt="">
+    <h1>School Management System</h1>
+</div>
+</div>
+<div class="half-header2">
+   <button class="add-btn" onclick="openModal()">+ Add Subject</button>
+ </div>
+    </header>
+    <div class="main-classes">
+    <div class="sidebar">
+  <nav>
+    <ul>
+      <li><a href="index.html">Dashbord</a></li>
+      <li><a href="user.html">Users</a></li>
+      <li><a href="class.html">Classes</a></li>
+      <li><a href="#">Subjects</a></li>
+      <li><a href="student.html">Students</a></li>
+      <li><a href="admission.html">Admission</a></li>
+    </ul>
+  </nav>
+</div>
+  <div class="container">
+    <div class="search-container">
+  <input type="text" id="searchInput" placeholder="Search Subject Name..." onkeyup="searchClass()" />
+</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Subject Name</th>
+          <th>Class</th>
+          <th>Teacher</th>
+          <th>Total Students</th>
+          <th>Room #</th>
+        </tr>
+      </thead>
+      <tbody id="classTable">
+      </tbody>
+    </table>
+  </div>
+</div>
+  <div id="classModal" class="modal">
+    <div class="modal-content">
+      <h3>Add New Class</h3>
+      <input type="text" id="className" placeholder="Subject Name" />
+      <input type="text" id="section" placeholder="Class " />
+      <input type="text" id="teacher" placeholder="Class Teacher Name" />
+      <input type="number" id="students" placeholder="Total Students" />
+      <input type="text" id="Room" placeholder="Room" />
+      <button onclick="addClass()">Add Subject</button>
+    </div>
+  </div>
+<script>
+  const table = document.getElementById("classTable");
+  let classData = JSON.parse(localStorage.getItem("classes")) || [];
+  function displayClasses() {
+    table.innerHTML = "";
+    classData.forEach((item, index) => {
+      const row = table.insertRow();
+      row.innerHTML = `
+        <td>${item.name}</td>
+        <td>${item.section}</td>
+        <td>${item.teacher}</td>
+        <td>${item.students}</td>
+        <td>${item.room}</td> `;
+    });
+  }
+  function addClass() {
+    const name = document.getElementById("className").value.trim();
+    const section = document.getElementById("section").value.trim();
+    const teacher = document.getElementById("teacher").value.trim();
+    const students = document.getElementById("students").value.trim();
+    const room = document.getElementById("Room").value.trim();
+    if (!name || !section || !teacher || !students || !room) {
+      alert("Please fill all fields!");
+      return;
+    }
+    const newClass = {
+      name,
+      section,
+      teacher,
+      students,
+      room
+    };
+    classData.push(newClass);
+    localStorage.setItem("classes", JSON.stringify(classData));
+    displayClasses();
+    document.getElementById("classModal").style.display = "none";
+    document.getElementById("className").value = '';
+    document.getElementById("section").value = '';
+    document.getElementById("teacher").value = '';
+    document.getElementById("students").value = '';
+    document.getElementById("Room").value = '';
+  }
+  function searchClass() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const rows = document.querySelectorAll("#classTable tr");
+    let found = false;
+    rows.forEach(row => {
+      const className = row.cells[0].textContent.toLowerCase();
+      if (className.includes(input)) {
+        row.style.display = "";
+        found = true;
+      } else {
+        row.style.display = "none";
+      }
+    });
+    if (!found && input.trim() !== "") {
+      alert("Subject not found!");
+    }
+  }
+  function openModal() {
+    document.getElementById("classModal").style.display = "block";
+  }
+  window.onclick = function(event) {
+    const modal = document.getElementById("classModal");
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+  displayClasses();
+</script>
+</body>
+</html>

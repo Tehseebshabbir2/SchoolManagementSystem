@@ -1,0 +1,121 @@
+@media screen and (max-width: 1024px) {
+  .sidebar {
+    width: 25%;
+  }
+  .content-area, .main-dashboard, .form-container, .container {
+    width: 75%;
+    padding: 20px;
+  }
+  .card {
+    width: 100%;
+  }
+  .dashboard {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+  .half-header, .half-header2 {
+    width: 100%;
+    justify-content: center;
+    margin: 10px 0;
+  }
+  .logo {
+    margin: 10px auto;
+    justify-content: center;
+  }
+  .buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .main-container,
+  .main-page,
+  .main-dashboard,
+  .main-admision,
+  .main-classes {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+  .content-area,
+  .form-container,
+  .main-dashboard,
+  .container {
+    width: 100%;
+    padding: 15px;
+  }
+  .bar-chart {
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+  }
+  .main-chart {
+    width: 100%;
+    margin: 0 auto;
+    float: none;
+    padding: 10px;
+  }
+  table {
+    font-size: 14px;
+    overflow-x: auto;
+    display: block;
+  }
+  .modal-content {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 992px) {
+  .header, .main-container, .main-classes, .main-admision, .main-page {
+    flex-direction: column;
+  }
+  .half-header, .half-header2 {
+    width: 100%;
+    text-align: center;
+    justify-content: center !important;
+    margin: 10px 0;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+  .main-dashboard, .container, .form-container, .content-area {
+    width: 100%;
+    padding: 20px;
+  }
+  .card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .dashboard {
+    flex-direction: column;
+    align-items: center;
+  }
+  .main-chart {
+    width: 100%;
+    margin: 20px 0;
+  }
+  .bar-group {
+    width: 60px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .logo h1 {
+    font-size: 16px;
+  }
+  .logout-btn, .create-btn {
+    font-size: 14px;
+  }
+  .search-container {
+    text-align: center;
+  }
+  #searchInput {
+    width: 90%;
+  }
+}

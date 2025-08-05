@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School Mangment System</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="media qeure.css">
 </head>
 <body>
     <header class="header">
@@ -17,38 +18,27 @@
 <div class="half-header2">
   <div class="buttons">
   <a href="login.html" class="logout-btn">Login</a>
-  <a href="add.html" class="create-btn">Create</a>
   </div>
  </div>
     </header>
-    <div class="sidebar">
+    <div class="main-page">
+    <div class="sidebar" style="height: 105vh;">
       <div class="sidebar1">
   <nav>
     <ul>
-<<<<<<< Updated upstream
+      <li><a href="index.html">Dashbord</a></li>
       <li><a href="user.html">Users</a></li>
       <li><a href="class.html">Classes</a></li>
-=======
-        <li><a href="">Dashboard</a></li>
-      <li>
-        <a href="#" onclick="toggleUserDropdown(event)">Users</a>
-        <div class="user-dropdown" id="userDropdown">
-          <div>Principal</div>
-          <div>Teacher</div>
-          <div>Security Staff</div>
-          <div>Students</div>
-        </div>
-      <li><a href="#">Classes</a></li>
->>>>>>> Stashed changes
-      <li><a href="#">Subjects</a></li>
-      <li><a href="#">Students</a></li>
-      <li><a href="#">Admission</a></li>
-      <li><a href="#">Quizzes</a></li>
+      <li><a href="subject.html">Subjects</a></li>
+      <li><a href="student.html">Students</a></li>
+      <li><a href="admission.html">Admission</a></li>
+      
     </ul>
   </nav>
   </div>
-  <div class="sidebar2">
-  <div class="dashboard-container">
+</div>
+<div class="main-dashboard">
+     <div class="dashboard-container">
       <h1>Dashboard</h1>
       <div class="dashboard">
         <div class="card">
@@ -63,10 +53,57 @@
           <h2>Total Principals</h2>
           <p>1</p>
         </div>
+        <div class="card">
+          <h2>Total Classes</h2>
+          <p>15</p>
+        </div>
+        <div class="card">
+          <h2>Total Subjects</h2>
+          <p>15</p>
+        </div>
+      </div>
+     </div>
+     <div class="main-chart">
+      <h2>Attendance</h2>
+      <div class="bar-chart">
+      <div class="bar-group">
+        <div class="bar employee" style="height: 186px;" title="Employee: 93"></div>
+        <div class="bar student" style="height: 123px;" title="Student: 42"></div>
+        <div class="day-label">Monday(13/2)</div>
+      </div>
+      <div class="bar-group">
+        <div class="bar employee" style="height: 78px;" title="Employee: 28"></div>
+        <div class="bar student" style="height: 182px;" title="Student: 91"></div>
+        <div class="day-label">Tuesday(14/2)</div>
+      </div>
+      <div class="bar-group">
+        <div class="bar employee" style="height: 120px;" title="Employee: 93"></div>
+        <div class="bar student" style="height: 140px;" title="Student: 93"></div>
+        <div class="day-label">Thursday(15/2)</div>
+      </div>
+      <div class="bar-group">
+        <div class="bar employee" style="height: 186px;" title="Employee: 93"></div>
+        <div class="bar student" style="height: 49px;" title="Student: 96"></div>
+        <div class="day-label">Wednesday(16/2)</div>
+      </div>
+       <div class="bar-group">
+        <div class="bar employee" style="height: 186px;" title="Employee: 93"></div>
+        <div class="bar student" style="height: 132px;" title="Student: 96"></div>
+        <div class="day-label">Friday(17/2)</div>
+      </div>
+       <div class="bar-group">
+        <div class="bar employee" style="height: 186px;" title="Employee: 93"></div>
+        <div class="bar student" style="height: 132px;" title="Student: 96"></div>
+        <div class="day-label">saturday(18/2)</div>
       </div>
     </div>
-  </div>
-</div>
+    <div class="legend">
+      <span><div class="employee-box"></div> Employee</span>
+      <span><div class="student-box"></div> Student</span>
+    </div>
+     </div>
+    </div>
+    </div>
 <script src="script.js"></script>
 </body>
 </html>

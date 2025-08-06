@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="half-header2">
-      <a href="add.html" class="create-btn">Create</a>
+      <a href="add.html" class="create-btn">+ Add New User</a>
       <div class="action-button-container">
   <div class="dropdown-wrapper">
     <span class="dropdown-icon" onclick="toggleDropdown()">☰</span> 
@@ -48,57 +48,32 @@
        <div class="search-container">
   <input type="text" id="searchInput" placeholder="Search User Id......" onkeyup="searchClass()" />
        </div>
-      <table>
-        <thead>
-          <tr>
-            <th>User ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Contact</th>
-            <th>Address</th>
-          </tr>
-        </thead>
-        <tbody id="userTableBody">
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <script>
-  function searchClass() {
-    const input = document.getElementById("searchInput").value.toLowerCase();
-    const rows = document.querySelectorAll("#userTableBody tr");
-    let found = false;
-    rows.forEach(row => {
-      const userId = row.cells[0].textContent.toLowerCase();
-      if (userId.includes(input)) {
-        row.style.display = "";
-        found = true;
-      } else {
-        row.style.display = "none";
-      }
-    });
-    if (!found && input.trim() !== "") {
-      alert("User ID not found!");
-    }
-  }
-  function toggleDropdown() {
-    const menu = document.getElementById('dropdownMenu');
-    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-  }
-  document.addEventListener('click', function (e) {
-    const menu = document.getElementById('dropdownMenu');
-    const icon = document.querySelector('.dropdown-icon');
-    if (!icon.contains(e.target) && !menu.contains(e.target)) {
-      menu.style.display = 'none';
-    }
-  });
-  window.onload = function () {
+
+<table>
+  <thead>
+    <tr>
+      <th>User Id #</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Contact</th>
+      <th>Address</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody id="userTableBody"></tbody>
+</table>
+
+<script>
+  function loadUsers() {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const tbody = document.getElementById("userTableBody");
+    tbody.innerHTML = "";
+
     users.forEach((user, index) => {
       const row = document.createElement("tr");
+
       row.innerHTML = `
         <td>${index + 1}</td>
         <td>${user.firstName}</td>
@@ -106,10 +81,29 @@
         <td>${user.email}</td>
         <td>${user.role}</td>
         <td>${user.contact}</td>
-        <td>${user.address}</td>`;
+        <td>${user.address}</td>
+        <td>
+          <button class="crud-btn" onclick="editUser(${index})">Edit</button>
+          <button class="crud-btn" onclick="deleteUser(${index})">Delete</button>
+        </td>
+      `;
       tbody.appendChild(row);
     });
-  };
+  }
+
+  function editUser(index) {
+    window.location.href = `add.html?edit=${index}`;
+  }
+
+  function deleteUser(index) {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    users.splice(index, 1);
+    localStorage.setItem("users", JSON.stringify(users));
+    loadUsers(); // Refresh table
+  }
+
+  window.onload = loadUsers;
 </script>
+
 </body>
 </html>

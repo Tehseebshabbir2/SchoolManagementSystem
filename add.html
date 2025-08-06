@@ -53,40 +53,64 @@
   }
 </style>
 <body>
-  <form id="userForm">
-    <input type="text" id="name" placeholder="First Name" required />
-    <input type="text" id="name" placeholder="Last name" required />
-    <input type="email" id="email" placeholder="Enter Email" required />
-    <select id="role" required>
-      <option value="">Select Role</option>
-      <option value="Student">Student</option>
-      <option value="Teacher">Teacher</option>
-      <option value="Security Staff">Security Staff</option>
-      <option value="Principal">Principal</option>
-    </select>
-    <input type="tel" id="contact" placeholder="Enter Contact Number" required />
-    <textarea id="address" placeholder="Enter Address" required></textarea>
-    <button type="submit">Add User</button>
-  </form>
+ <form id="userForm">
+  <input type="hidden" id="userIndex" />
+  <input type="text" id="firstName" placeholder="First Name" required />
+  <input type="text" id="lastName" placeholder="Last Name" required />
+  <input type="email" id="email" placeholder="Enter Email" required />
+  <select id="role" required>
+    <option value="">Select Role</option>
+    <option value="Student">Student</option>
+    <option value="Teacher">Teacher</option>
+    <option value="Security Staff">Security Staff</option>
+    <option value="Principal">Principal</option>
+  </select>
+  <input type="tel" id="contact" placeholder="Enter Contact Number" required />
+  <textarea id="address" placeholder="Enter Address" required></textarea>
+  <button type="submit">Save User</button>
+</form>
   <script>
+    
+  window.onload = function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const index = urlParams.get("edit");
+
+    if (index !== null) {
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users[parseInt(index)];
+      if (user) {
+        document.getElementById("userIndex").value = index;
+        document.getElementById("firstName").value = user.firstName;
+        document.getElementById("lastName").value = user.lastName;
+        document.getElementById("email").value = user.email;
+        document.getElementById("role").value = user.role;
+        document.getElementById("contact").value = user.contact;
+        document.getElementById("address").value = user.address;
+      }
+    }
+  };
+
   document.getElementById("userForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    const firstName = document.getElementsByTagName("input")[0].value;
-    const lastName = document.getElementsByTagName("input")[1].value;
+
+    const firstName = document.getElementById("firstName").value;
+    const lastName = document.getElementById("lastName").value;
     const email = document.getElementById("email").value;
     const role = document.getElementById("role").value;
     const contact = document.getElementById("contact").value;
     const address = document.getElementById("address").value;
-    const user = {
-      firstName,
-      lastName,
-      email,
-      role,
-      contact,
-      address,
-    };
+    const index = document.getElementById("userIndex").value;
+
+    const userData = { firstName, lastName, email, role, contact, address };
+
     let users = JSON.parse(localStorage.getItem("users")) || [];
-    users.push(user);
+
+    if (index === "") {
+      users.push(userData); // New user
+    } else {
+      users[parseInt(index)] = userData; // Update user
+    }
+
     localStorage.setItem("users", JSON.stringify(users));
     window.location.href = "user.html";
   });

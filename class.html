@@ -26,7 +26,7 @@
       <li><a href="index.html">Dashbord</a></li>
       <li><a href="user.html">Users</a></li>
       <li><a href="#">Classes</a></li>
-      <li><a href="subject.html">Subjects</a></li>
+      <li><a href="subject.html">Subjects</a></li> 
       <li><a href="student.html">Students</a></li>
       <li><a href="admission.html">Admission</a></li>
      
@@ -45,7 +45,7 @@
           <th>Section</th>
           <th>Teacher</th>
           <th>Total Students</th>
-          <th>Room</th>
+          <th>Room #</th>
           <th>Acation</th>
         </tr>
       </thead>
@@ -66,7 +66,102 @@
     </div>
   </div>
   <script>
-  let editingRow = null;
+  let editingIndex = null;
+
+  
+  function loadClasses() {
+    const storedClasses = JSON.parse(localStorage.getItem('classes')) || [];
+    const table = document.getElementById("classTable");
+    table.innerHTML = '';
+    storedClasses.forEach((cls, index) => {
+      const row = table.insertRow();
+      row.innerHTML = `
+        <td>${cls.name}</td>
+        <td>${cls.section}</td>
+        <td>${cls.teacher}</td>
+        <td>${cls.students}</td>
+        <td>${cls.room}</td>
+        <td>
+          <button onclick="editClass(${index})" class="crud-btn">Edit</button>
+          <button onclick="deleteClass(${index})" class="crud-btn">Delete</button>
+        </td>
+      `;
+    });
+  }
+
+ 
+  function saveToLocalStorage(data) {
+    localStorage.setItem('classes', JSON.stringify(data));
+  }
+
+  
+  function openModal() {
+    document.getElementById("classModal").style.display = "block";
+  }
+
+  window.onclick = function (event) {
+    const modal = document.getElementById("classModal");
+    if (event.target == modal) {
+      modal.style.display = "none";
+      resetForm();
+    }
+  };
+
+  function resetForm() {
+    document.getElementById("className").value = '';
+    document.getElementById("section").value = '';
+    document.getElementById("teacher").value = '';
+    document.getElementById("students").value = '';
+    document.getElementById("Room").value = '';
+    editingIndex = null;
+  }
+
+  function addClass() {
+    const name = document.getElementById("className").value.trim();
+    const section = document.getElementById("section").value.trim();
+    const teacher = document.getElementById("teacher").value.trim();
+    const students = document.getElementById("students").value.trim();
+    const room = document.getElementById("Room").value.trim();
+
+    if (!name || !section || !teacher || !students || !room) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    let classes = JSON.parse(localStorage.getItem('classes')) || [];
+
+    if (editingIndex === null) {
+     
+      classes.push({ name, section, teacher, students, room });
+    } else {
+      
+      classes[editingIndex] = { name, section, teacher, students, room };
+    }
+
+    saveToLocalStorage(classes);
+    loadClasses();
+    document.getElementById("classModal").style.display = "none";
+    resetForm();
+  }
+
+  function editClass(index) {
+    const classes = JSON.parse(localStorage.getItem('classes')) || [];
+    const cls = classes[index];
+    document.getElementById("className").value = cls.name;
+    document.getElementById("section").value = cls.section;
+    document.getElementById("teacher").value = cls.teacher;
+    document.getElementById("students").value = cls.students;
+    document.getElementById("Room").value = cls.room;
+    editingIndex = index;
+    openModal();
+  }
+
+  function deleteClass(index) {
+    let classes = JSON.parse(localStorage.getItem('classes')) || [];
+    classes.splice(index, 1);
+    saveToLocalStorage(classes);
+    loadClasses();
+  }
 
   function searchClass() {
     const input = document.getElementById("searchInput").value.toLowerCase();
@@ -86,78 +181,8 @@
     }
   }
 
-  function openModal() {
-    document.getElementById("classModal").style.display = "block";
-  }
 
-  window.onclick = function (event) {
-    const modal = document.getElementById("classModal");
-    if (event.target == modal) {
-      modal.style.display = "none";
-      resetForm();
-    }
-  };
-
-  function resetForm() {
-    document.getElementById("className").value = '';
-    document.getElementById("section").value = '';
-    document.getElementById("teacher").value = '';
-    document.getElementById("students").value = '';
-    document.getElementById("Room").value = '';
-    editingRow = null;
-  }
-
-  function addClass() {
-    const name = document.getElementById("className").value;
-    const section = document.getElementById("section").value;
-    const teacher = document.getElementById("teacher").value;
-    const students = document.getElementById("students").value;
-    const room = document.getElementById("Room").value;
-
-    if (editingRow === null) {
-      const table = document.getElementById("classTable");
-      const row = table.insertRow();
-      row.innerHTML = `
-        <td>${name}</td>
-        <td>${section}</td>
-        <td>${teacher}</td>
-        <td>${students}</td>
-        <td>${room}</td>
-        <td>
-          <button onclick="editClass(this)">Edit</button>
-          <button onclick="deleteClass(this)">Delete</button>
-        </td>
-      `;
-    } else {
-      // Update the row
-      editingRow.cells[0].textContent = name;
-      editingRow.cells[1].textContent = section;
-      editingRow.cells[2].textContent = teacher;
-      editingRow.cells[3].textContent = students;
-      editingRow.cells[4].textContent = room;
-      editingRow = null;
-    }
-
-    document.getElementById("classModal").style.display = "none";
-    resetForm();
-  }
-
-  function editClass(button) {
-    editingRow = button.parentElement.parentElement;
-
-    document.getElementById("className").value = editingRow.cells[0].textContent;
-    document.getElementById("section").value = editingRow.cells[1].textContent;
-    document.getElementById("teacher").value = editingRow.cells[2].textContent;
-    document.getElementById("students").value = editingRow.cells[3].textContent;
-    document.getElementById("Room").value = editingRow.cells[4].textContent;
-
-    openModal();
-  }
-
-  function deleteClass(button) {
-    const row = button.parentElement.parentElement;
-    row.remove();
-  }
+  window.onload = loadClasses;
 </script>
 
 </body>

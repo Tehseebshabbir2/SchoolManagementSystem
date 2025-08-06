@@ -47,6 +47,7 @@
           <th>Class</th>
           <th>phone #</th>
           <th>Address</th>
+          <th>Acation</th>
         </tr>
       </thead>
       <tbody id="classTable">
@@ -57,65 +58,140 @@
   <div id="classModal" class="modal">
     <div class="modal-content">
       <h3>Add New Class</h3>
-      <input type="text" id="className" placeholder="student Id" />
-      <input type="text" id="section" placeholder="Student name" />
+      <input type="text" id="studentid" placeholder="student Id" />
+      <input type="text" id="studentname" placeholder="Student name" />
       <input type="text" id="teacher" placeholder="Class Teacher Name" />
-      <input type="number" id="students" placeholder="phone #" />
-      <input type="text" id="Room" placeholder="Adress" />
+      <input type="text" id="phone" placeholder="phone #" />
+      <input type="text" id="adress" placeholder="Adress" />
       <button onclick="addClass()">Add Class</button>
     </div>
   </div>
-  <script>
-function searchClass() {
-  const input = document.getElementById("searchInput").value.toLowerCase();
-  const rows = document.querySelectorAll("#classTable tr");
-  let found = false; 
-  
-  rows.forEach(row => {
-    const studentId = row.cells[0].textContent.toLowerCase(); // Student ID = column 0
-    if (studentId.includes(input)) {
-      row.style.display = "";
-      found = true; 
-    } else {
-      row.style.display = "none";
-    }
-  });
+ <script>
+  let editIndex = null;
 
-  if (!found && input.trim() !== "") {
-    alert("Student ID not found!");
+ 
+  window.onload = function () {
+    const data = JSON.parse(localStorage.getItem("students")) || [];
+    data.forEach((student, index) => {
+      insertRow(student, index);
+    });
+  };
+
+  function openModal() {
+    document.getElementById("classModal").style.display = "block";
   }
-}
 
-    function openModal() {
-      document.getElementById("classModal").style.display = "block";
+  window.onclick = function (event) {
+    const modal = document.getElementById("classModal");
+    if (event.target == modal) {
+      modal.style.display = "none";
     }
-    window.onclick = function(event) {
-      const modal = document.getElementById("classModal");
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
+  };
+
+  function getFormData() {
+    return {
+      id: document.getElementById("studentid").value,
+      name: document.getElementById("studentname").value,
+      class: document.getElementById("teacher").value,
+      phone: document.getElementById("phone").value,
+      address: document.getElementById("adress").value
     };
-    function addClass() {
-      const name = document.getElementById("className").value;
-      const section = document.getElementById("section").value;
-      const teacher = document.getElementById("teacher").value;
-      const students = document.getElementById("students").value;
-      const Room  = document.getElementById("Room").value;
-      const table = document.getElementById("classTable");
-      const row = table.insertRow();
-      row.innerHTML = `
-        <td>${name}</td>
-        <td>${section}</td>
-        <td>${teacher}</td>
-        <td>${students}</td>
-        <td>${Room}</td>`;
-      document.getElementById("classModal").style.display = "none";
-      document.getElementById("className").value = '';
-      document.getElementById("section").value = '';
-      document.getElementById("teacher").value = '';
-      document.getElementById("students").value = '';
-       document.getElementById("Room").value = '';
+  }
+
+  function clearForm() {
+    document.getElementById("studentid").value = '';
+    document.getElementById("studentname").value = '';
+    document.getElementById("teacher").value = '';
+    document.getElementById("phone").value = '';
+    document.getElementById("adress").value = '';
+  }
+
+  function insertRow(student, index) {
+    const table = document.getElementById("classTable");
+    const row = table.insertRow();
+    row.innerHTML = `
+      <td>${student.id}</td>
+      <td>${student.name}</td>
+      <td>${student.class}</td>
+      <td>${student.phone}</td>
+      <td>${student.address}</td>
+      <td>
+        <button onclick="editRow(${index})" class="crud-btn">Edit</button>
+        <button onclick="deleteRow(${index})" class="crud-btn">Delete</button>
+      </td>
+    `;
+  }
+
+  function refreshTable() {
+    const table = document.getElementById("classTable");
+    table.innerHTML = "";
+    const data = JSON.parse(localStorage.getItem("students")) || [];
+    data.forEach((student, index) => {
+      insertRow(student, index);
+    });
+  }
+
+  function addClass() {
+    const student = getFormData();
+    let data = JSON.parse(localStorage.getItem("students")) || [];
+
+    if (editIndex !== null) {
+     
+      data[editIndex] = student;
+      editIndex = null;
+    } else {
+      
+      data.push(student);
     }
-  </script>
+
+    localStorage.setItem("students", JSON.stringify(data));
+    document.getElementById("classModal").style.display = "none";
+    clearForm();
+    refreshTable();
+  }
+
+  function deleteRow(index) {
+    let data = JSON.parse(localStorage.getItem("students")) || [];
+    data.splice(index, 1);
+    localStorage.setItem("students", JSON.stringify(data));
+    refreshTable();
+  }
+
+  function editRow(index) {
+    let data = JSON.parse(localStorage.getItem("students")) || [];
+    const student = data[index];
+
+    document.getElementById("studentid").value = student.id;
+    document.getElementById("studentname").value = student.name;
+    document.getElementById("teacher").value = student.class;
+    document.getElementById("phone").value = student.phone;
+    document.getElementById("adress").value = student.address;
+
+    openModal();
+    editIndex = index;
+  }
+
+  function searchClass() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const rows = document.querySelectorAll("#classTable tr");
+    let found = false;
+
+    rows.forEach(row => {
+      const studentId = row.cells[0].textContent.toLowerCase();
+      if (studentId.includes(input)) {
+        row.style.display = "";
+        found = true;
+      } else {
+        row.style.display = "none";
+      }
+    });
+
+    if (!found && input.trim() !== "") {
+      alert("Student ID not found!");
+    }
+  }
+</script>
+
+
 </body>
 </html>

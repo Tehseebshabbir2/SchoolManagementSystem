@@ -44,6 +44,7 @@
           <th>Teacher</th>
           <th>Total Students</th>
           <th>Room #</th>
+          <th>action</th>
         </tr>
       </thead>
       <tbody id="classTable">
@@ -54,83 +55,130 @@
   <div id="classModal" class="modal">
     <div class="modal-content">
       <h3>Add New Class</h3>
-      <input type="text" id="className" placeholder="Subject Name" />
-      <input type="text" id="section" placeholder="Class " />
-      <input type="text" id="teacher" placeholder="Class Teacher Name" />
-      <input type="number" id="students" placeholder="Total Students" />
-      <input type="text" id="Room" placeholder="Room" />
+      <input type="text" id="subjectname" placeholder="Subject Name" />
+      <input type="text" id="classname" placeholder="Class " />
+      <input type="text" id="classteacher" placeholder="Class Teacher Name" />
+      <input type="number" id="totalstudents" placeholder="Total Students" />
+      <input type="text" id="roome" placeholder="Room" />
       <button onclick="addClass()">Add Subject</button>
     </div>
   </div>
 <script>
   const table = document.getElementById("classTable");
-  let classData = JSON.parse(localStorage.getItem("classes")) || [];
+  let classData = JSON.parse(localStorage.getItem("subjects")) || [];
+  let editIndex = null;
+
   function displayClasses() {
     table.innerHTML = "";
     classData.forEach((item, index) => {
       const row = table.insertRow();
       row.innerHTML = `
-        <td>${item.name}</td>
-        <td>${item.section}</td>
-        <td>${item.teacher}</td>
-        <td>${item.students}</td>
-        <td>${item.room}</td> `;
+        <td>${item.subjectname}</td>
+        <td>${item.classname}</td>
+        <td>${item.classteacher}</td>
+        <td>${item.totalstudents}</td>
+        <td>${item.roome}</td>
+        <td>
+          <button onclick="editClass(${index})" class="crud-btn">Edit</button>
+          <button onclick="deleteClass(${index})" class="crud-btn">Delete</button>
+        </td>
+      `;
     });
   }
+
   function addClass() {
-    const name = document.getElementById("className").value.trim();
-    const section = document.getElementById("section").value.trim();
-    const teacher = document.getElementById("teacher").value.trim();
-    const students = document.getElementById("students").value.trim();
-    const room = document.getElementById("Room").value.trim();
-    if (!name || !section || !teacher || !students || !room) {
+    const subjectname = document.getElementById("subjectname").value.trim();
+    const classname = document.getElementById("classname").value.trim();
+    const classteacher = document.getElementById("classteacher").value.trim();
+    const totalstudents = document.getElementById("totalstudents").value.trim();
+    const roome = document.getElementById("roome").value.trim();
+
+    if (!subjectname || !classname || !classteacher || !totalstudents || !roome) {
       alert("Please fill all fields!");
       return;
     }
-    const newClass = {
-      name,
-      section,
-      teacher,
-      students,
-      room
-    };
-    classData.push(newClass);
-    localStorage.setItem("classes", JSON.stringify(classData));
+
+    const newClass = { subjectname, classname, classteacher, totalstudents, roome };
+
+    if (editIndex !== null) {
+      classData[editIndex] = newClass;
+      editIndex = null;
+    } else {
+      classData.push(newClass);
+    }
+
+    localStorage.setItem("subjects", JSON.stringify(classData));
     displayClasses();
-    document.getElementById("classModal").style.display = "none";
-    document.getElementById("className").value = '';
-    document.getElementById("section").value = '';
-    document.getElementById("teacher").value = '';
-    document.getElementById("students").value = '';
-    document.getElementById("Room").value = '';
+    closeModal();
+    clearForm();
   }
+
+  function editClass(index) {
+    const item = classData[index];
+    document.getElementById("subjectname").value = item.subjectname;
+    document.getElementById("classname").value = item.classname;
+    document.getElementById("classteacher").value = item.classteacher;
+    document.getElementById("totalstudents").value = item.totalstudents;
+    document.getElementById("roome").value = item.roome;
+
+    editIndex = index;
+    openModal();
+  }
+
+  function deleteClass(index) {
+    // if (confirm("Are you sure you want to delete this subject?")) 
+      classData.splice(index, 1);
+      localStorage.setItem("subjects", JSON.stringify(classData));
+      displayClasses();
+    }
+  
+
   function searchClass() {
     const input = document.getElementById("searchInput").value.toLowerCase();
     const rows = document.querySelectorAll("#classTable tr");
     let found = false;
+
     rows.forEach(row => {
-      const className = row.cells[0].textContent.toLowerCase();
-      if (className.includes(input)) {
+      const subjectName = row.cells[0].textContent.toLowerCase();
+      if (subjectName.includes(input)) {
         row.style.display = "";
         found = true;
       } else {
         row.style.display = "none";
       }
     });
+
     if (!found && input.trim() !== "") {
       alert("Subject not found!");
     }
   }
+
   function openModal() {
     document.getElementById("classModal").style.display = "block";
   }
+
+  function closeModal() {
+    document.getElementById("classModal").style.display = "none";
+  }
+
+  function clearForm() {
+    document.getElementById("subjectname").value = '';
+    document.getElementById("classname").value = '';
+    document.getElementById("classteacher").value = '';
+    document.getElementById("totalstudents").value = '';
+    document.getElementById("roome").value = '';
+  }
+
   window.onclick = function(event) {
     const modal = document.getElementById("classModal");
     if (event.target == modal) {
-      modal.style.display = "none";
+      closeModal();
     }
   };
+
+ 
   displayClasses();
 </script>
+
 </body>
 </html>

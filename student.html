@@ -35,7 +35,8 @@
 </div>
   <div class="container">
     <div class="search-container">
-  <input type="text" id="searchInput" placeholder="Search Class Name..." onkeyup="searchClass()" />
+  <input type="text" id="searchInput" placeholder="Search Student ID..." onkeyup="searchClass()" />
+
 </div>
 
     <table>
@@ -65,23 +66,26 @@
     </div>
   </div>
   <script>
- function searchClass() {
+function searchClass() {
   const input = document.getElementById("searchInput").value.toLowerCase();
   const rows = document.querySelectorAll("#classTable tr");
   let found = false; 
+  
   rows.forEach(row => {
-    const className = row.cells[0].textContent.toLowerCase();
-    if (className.includes(input)) {
+    const studentId = row.cells[0].textContent.toLowerCase(); // Student ID = column 0
+    if (studentId.includes(input)) {
       row.style.display = "";
       found = true; 
     } else {
       row.style.display = "none";
     }
   });
+
   if (!found && input.trim() !== "") {
-    alert("Class not found!");
+    alert("Student ID not found!");
   }
 }
+
     function openModal() {
       document.getElementById("classModal").style.display = "block";
     }

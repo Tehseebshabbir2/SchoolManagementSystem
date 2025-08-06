@@ -45,7 +45,8 @@
           <th>Section</th>
           <th>Teacher</th>
           <th>Total Students</th>
-          <th>Room #</th>
+          <th>Room</th>
+          <th>Acation</th>
         </tr>
       </thead>
       <tbody id="classTable">
@@ -65,38 +66,55 @@
     </div>
   </div>
   <script>
- function searchClass() {
-  const input = document.getElementById("searchInput").value.toLowerCase();
-  const rows = document.querySelectorAll("#classTable tr");
-  let found = false; 
-  rows.forEach(row => {
-    const className = row.cells[0].textContent.toLowerCase();
-    if (className.includes(input)) {
-      row.style.display = "";
-      found = true; 
-    } else {
-      row.style.display = "none";
-    }
-  });
-  if (!found && input.trim() !== "") {
-    alert("Class not found!");
-  }
-}
-    function openModal() {
-      document.getElementById("classModal").style.display = "block";
-    }
-    window.onclick = function(event) {
-      const modal = document.getElementById("classModal");
-      if (event.target == modal) {
-        modal.style.display = "none";
+  let editingRow = null;
+
+  function searchClass() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const rows = document.querySelectorAll("#classTable tr");
+    let found = false;
+    rows.forEach(row => {
+      const className = row.cells[0].textContent.toLowerCase();
+      if (className.includes(input)) {
+        row.style.display = "";
+        found = true;
+      } else {
+        row.style.display = "none";
       }
-    };
-    function addClass() {
-      const name = document.getElementById("className").value;
-      const section = document.getElementById("section").value;
-      const teacher = document.getElementById("teacher").value;
-      const students = document.getElementById("students").value;
-      const Room  = document.getElementById("Room").value;
+    });
+    if (!found && input.trim() !== "") {
+      alert("Class not found!");
+    }
+  }
+
+  function openModal() {
+    document.getElementById("classModal").style.display = "block";
+  }
+
+  window.onclick = function (event) {
+    const modal = document.getElementById("classModal");
+    if (event.target == modal) {
+      modal.style.display = "none";
+      resetForm();
+    }
+  };
+
+  function resetForm() {
+    document.getElementById("className").value = '';
+    document.getElementById("section").value = '';
+    document.getElementById("teacher").value = '';
+    document.getElementById("students").value = '';
+    document.getElementById("Room").value = '';
+    editingRow = null;
+  }
+
+  function addClass() {
+    const name = document.getElementById("className").value;
+    const section = document.getElementById("section").value;
+    const teacher = document.getElementById("teacher").value;
+    const students = document.getElementById("students").value;
+    const room = document.getElementById("Room").value;
+
+    if (editingRow === null) {
       const table = document.getElementById("classTable");
       const row = table.insertRow();
       row.innerHTML = `
@@ -104,14 +122,43 @@
         <td>${section}</td>
         <td>${teacher}</td>
         <td>${students}</td>
-        <td>${Room}</td>`;
-      document.getElementById("classModal").style.display = "none";
-      document.getElementById("className").value = '';
-      document.getElementById("section").value = '';
-      document.getElementById("teacher").value = '';
-      document.getElementById("students").value = '';
-       document.getElementById("Room").value = '';
+        <td>${room}</td>
+        <td>
+          <button onclick="editClass(this)">Edit</button>
+          <button onclick="deleteClass(this)">Delete</button>
+        </td>
+      `;
+    } else {
+      // Update the row
+      editingRow.cells[0].textContent = name;
+      editingRow.cells[1].textContent = section;
+      editingRow.cells[2].textContent = teacher;
+      editingRow.cells[3].textContent = students;
+      editingRow.cells[4].textContent = room;
+      editingRow = null;
     }
-  </script>
+
+    document.getElementById("classModal").style.display = "none";
+    resetForm();
+  }
+
+  function editClass(button) {
+    editingRow = button.parentElement.parentElement;
+
+    document.getElementById("className").value = editingRow.cells[0].textContent;
+    document.getElementById("section").value = editingRow.cells[1].textContent;
+    document.getElementById("teacher").value = editingRow.cells[2].textContent;
+    document.getElementById("students").value = editingRow.cells[3].textContent;
+    document.getElementById("Room").value = editingRow.cells[4].textContent;
+
+    openModal();
+  }
+
+  function deleteClass(button) {
+    const row = button.parentElement.parentElement;
+    row.remove();
+  }
+</script>
+
 </body>
 </html>
